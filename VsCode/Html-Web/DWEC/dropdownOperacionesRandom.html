@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(20, 20, 20);
+        }
+
+        select {
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: rgb(36, 35, 36);
+            border-radius: 10px;
+        }
+
+        .fieldName {
+            color: white;
+        }
+
+        .textbox {
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: rgb(36, 35, 36);
+            border-radius: 10px;
+        }
+
+        .errorText {
+            color: red;
+            transition: 0.5s;
+        }
+
+        .successText {
+            color: green;
+            transition: 0.5s;
+        }
+
+        .errorTexbox {
+            border: 1px solid red;
+        }
+
+        .successTexbox {
+            border: 1px solid green;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: green;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <label class="fieldName">Numero 1:</label>
+        <input class="textbox" id="num1" type="number">
+        <label id="num1Validation" class="errorText"></label>
+
+        <label class="fieldName">Numero 2:</label>
+        <input class="textbox" id="num2" type="number">
+        <label id="num2Validation" class="errorText"></label>
+
+        <select name="operacion" id="operacion">
+            <option value="0">Suma</option>
+            <option value="1">Resta</option>
+            <option value="2">Multiplicacion</option>
+            <option value="3">Division</option>
+            <option value="4">Aleatorio</option>
+        </select>
+
+        <label for="result" class="fieldName">Resultado:</label>
+        <input class="textbox" id="result" name="result" type="number" readonly>
+
+        <button onclick="hacerOperacion()">Operar</button>
+    </div>
+
+    <script>
+        function hacerOperacion() {
+            //Referenciamos elementos
+            var num1 = document.getElementById("num1");
+            var num2 = document.getElementById("num2");
+            var operacion = document.getElementById("operacion").value;
+            var resultado;
+            var opAleatoria;
+
+            //Con fines de debug, imprimimos toda la selección
+            console.log("Num 1:" + num1.value);
+            console.log("Num 2:" + num2.value);
+            console.log("Operacion:" + operacion);
+
+            //Si alguno de los campos esta vacio, muestra un mensaje de error debajo
+            if (num1.value == "" || num1.value == null || num2.value == "" || num2.value == null) {
+                if(num1.value == "") document.getElementById("num1Validation").innerHTML = "Introduzca un numero valido";
+                if(num2.value == "") document.getElementById("num2Validation").innerHTML = "Introduzca un numero valido";
+            }
+
+            //Si la opcion seleccionada es aleatoria, selecciona una operacion aleatoria
+            else {
+                if(operacion == "4") {
+                        operacion = Math.floor(Math.random() * 4).toString();
+                        //Reimprimimos la operacion, en caso de ser aleatoria
+                        console.log("Operacion:" + operacion);
+                };
+
+                //Si no, se mantiene la operacion seleccionada
+                switch (operacion) {
+                    case "0":
+                        console.log("Suma");
+                        resultado = parseInt(num1.value) + parseInt(num2.value);
+                        break;
+                    case "1":
+                        console.log("Resta");
+                        resultado = parseInt(num1.value) - parseInt(num2.value);
+                        break;
+                    case "2":
+                        console.log("Multiplicacion");
+                        resultado = parseInt(num1.value) * parseInt(num2.value);
+                        break;
+                    case "3":
+                        console.log("Division");
+                        resultado = parseInt(num1.value) / parseInt(num2.value);
+                        break;
+                }
+
+                //Todo va bien, ocultan los mensajes de error
+                document.getElementById("num1Validation").innerHTML = "";
+                document.getElementById("num2Validation").innerHTML = "";
+
+                //Se muestra el resultado
+                document.getElementById("result").value = resultado;
+            }
+        }
+    </script>
+</body>
+
+</html>

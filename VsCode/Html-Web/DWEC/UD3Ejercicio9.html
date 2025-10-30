@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="checkbox" id="cbx1" placeholder="Introduce tu nombre" />
+    <input type="checkbox" id="cbx2" placeholder="Introduce tu nombre" />
+    <input type="checkbox" id="cbx3" placeholder="Introduce tu nombre" />
+    <button onclick="checkChecks()">Probar checkboxes</button>
+
+    <script>
+      var cbx1 = document.getElementById("cbx1");
+      var cbx2 = document.getElementById("cbx2");
+      var cbx3 = document.getElementById("cbx3");
+
+      function checkChecks() {
+        alert("Checkbox 1:" + cbx1.checked);
+        alert("Checkbox 2:" + cbx2.checked);
+        alert("Checkbox 3:" + cbx3.checked);
+
+        alert(
+          "Checkbox 1 " +
+            cbx1.checked +
+            " Checkbox 2 " +
+            cbx2.checked +
+            " Checkbox 3 " +
+            cbx3.checked
+        );
+      }
+    </script>
+  </body>
+</html>

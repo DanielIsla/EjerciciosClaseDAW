@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" style="margin: 0px">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(20, 20, 20);
+        color: white;
+      }
+
+      button {
+        padding: 5px;
+        outline: none;
+        border: 0px;
+        color: white;
+        background-color: green;
+        border-radius: 10px;
+      }
+
+      input {
+        padding: 5px;
+        outline: none;
+        border: 0px;
+        color: white;
+        background-color: rgb(49, 49, 49);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="lista"></ul>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px;
+        margin: 0px;
+      "
+    >
+      <input type="text" id="texto" />
+      <button id="boton" onclick="nuevoElemento()">Añadir elemento</button>
+    </div>
+    <script>
+      function nuevoElemento() {
+        var lista = document.getElementById("lista");
+        var texto = document.getElementById("texto").value;
+
+        var nuevoElemento = document.createElement("li");
+        nuevoElemento.innerHTML = texto;
+
+        lista.appendChild(nuevoElemento);
+
+        document.getElementById("texto").value = "";
+
+        console.log(nuevoElemento);
+        console.log(lista);
+      }
+    </script>
+  </body>
+</html>

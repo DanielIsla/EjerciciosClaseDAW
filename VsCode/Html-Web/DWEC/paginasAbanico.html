@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <button onclick="
+        startPos = 100;
+        for (let i = 0; i < 5; i++) {
+            const ventana = window.open('', 'ventana' + i, 'left=' + startPos + ',top=100,width=500,height=500');
+            ventana.document.write(`
+                <p>Ventana ${i}</p>
+                <button onclick='window.close()'>Cerrar ventana</button>
+            `);
+            startPos = startPos + 100;
+        }
+
+        document.write(`
+            <p>Abiertas ' + (i + 1) + ' ventanas</p>
+        `);
+
+    ">Abrir ventanas</button>
+</body>
+
+</html>

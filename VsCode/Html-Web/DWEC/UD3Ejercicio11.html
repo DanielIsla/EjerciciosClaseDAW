@@ -1,0 +1,76 @@
+<!--Código HTML hecho por Daniel Isla Martinez, 2 DAW-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-direction: column;
+      "
+    >
+      <div>
+        <input id="cronometro" />
+        <input type="button" value="Iniciar" onclick="iniciarCronometro()" />
+      </div>
+
+      <div>
+        <input type="button" value="Detener" onclick="detenerCronometro()" />
+        <input
+          type="button"
+          value="Reiniciar"
+          onclick="reiniciarCronometro()"
+        />
+      </div>
+    </div>
+    <script>
+      segundos = 0;
+      minutos = 0;
+      horas = 0;
+
+      intervalCrono = null;
+
+      let cronometro = document.getElementById("cronometro");
+      cronometro.value = this.horas + ":" + this.minutos + ":" + this.segundos;
+
+      function iniciarCronometro() {
+        this.intervalCrono = setInterval(() => {
+          this.segundos++;
+          if (this.segundos == 60) {
+            this.segundos = 0;
+            minutos++;
+          }
+          if (this.minutos == 60) {
+            this.minutos = 0;
+            horas++;
+          }
+          if (this.horas == 24) {
+            this.horas = 0;
+          }
+          cronometro.value =
+            this.horas + ":" + this.minutos + ":" + this.segundos;
+        }, 1000);
+      }
+
+      function detenerCronometro() {
+        clearInterval(this.intervalCrono);
+      }
+      function reiniciarCronometro() {
+        this.segundos = 0;
+        this.minutos = 0;
+        this.horas = 0;
+
+        cronometro.value =
+          this.horas + ":" + this.minutos + ":" + this.segundos;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!--Código HTML hecho por Daniel Isla Martinez, 2 DAW-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="texto" />
+    <button id="boton1">-></button>
+    <button id="boton2"><-</button>
+    <input type="text" id="texto2" />
+    <script>
+      var texto = document.getElementById("texto");
+      var texto2 = document.getElementById("texto2");
+      var boton1 = document.getElementById("boton1");
+      var boton2 = document.getElementById("boton2");
+
+      boton1.addEventListener("click", function () {
+        texto2.value = texto.value;
+        texto.value = "";
+      });
+      boton2.addEventListener("click", function () {
+        texto.value = texto2.value;
+        texto2.value = "";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(20, 20, 20);
+        }
+
+        select {
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: rgb(36, 35, 36);
+            border-radius: 10px;
+        }
+
+        .fieldName {
+            color: white;
+        }
+
+        .textbox {
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: rgb(36, 35, 36);
+            border-radius: 10px;
+        }
+
+        .errorText {
+            color: red;
+            transition: 0.5s;
+        }
+
+        .successText {
+            color: green;
+            transition: 0.5s;
+        }
+
+        .errorTexbox {
+            border: 1px solid red;
+        }
+
+        .successTexbox {
+            border: 1px solid green;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: green;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <label for="num1" class="fieldName">Numero 1:</label>
+        <input class="textbox" id="num1" type="number">
+        <label id="num1Validation" class="errorText"></label>
+
+        <label for="num2" class="fieldName">Numero 2:</label>
+        <input class="textbox" id="num2" type="number">
+        <label id="num2Validation" class="errorText"></label>
+
+        <select name="operacion" id="operacion">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacion">Multiplicacion</option>
+            <option value="division">Division</option>
+        </select>
+
+        <label for="result" class="fieldName">Resultado:</label>
+        <input class="textbox" id="result" name="result" type="number" readonly>
+
+        <button onclick="hacerOperacion()">Operar</button>
+    </div>
+
+    <script>
+        function hacerOperacion() {
+            var num1 = document.getElementById("num1");
+            var num2 = document.getElementById("num2");
+            var operacion = document.getElementById("operacion").value;
+            var resultado;
+
+            console.log("Num 1:" + num1.value);
+            console.log("Num 2:" + num2.value);
+            console.log("Operacion:" + operacion);
+
+            if (num1.value == "" || num1.value == null || num2.value == "" || num2.value == null) {
+                if(num1.value == "") document.getElementById("num1Validation").innerHTML = "Introduzca un numero valido";
+                if(num2.value == "") document.getElementById("num2Validation").innerHTML = "Introduzca un numero valido";
+            }
+
+            else {
+                switch (operacion) {
+                    case "suma":
+                        console.log("Suma");
+                        resultado = parseInt(num1.value) + parseInt(num2.value);
+                        break;
+                    case "resta":
+                        console.log("Resta");
+                        resultado = parseInt(num1.value) - parseInt(num2.value);
+                        break;
+                    case "multiplicacion":
+                        console.log("Multiplicacion");
+                        resultado = parseInt(num1.value) * parseInt(num2.value);
+                        break;
+                    case "division":
+                        console.log("Division");
+                        resultado = parseInt(num1.value) / parseInt(num2.value);
+                        break;
+                }
+
+                document.getElementById("result").value = resultado;
+            }
+        }
+    </script>
+</body>
+
+</html>

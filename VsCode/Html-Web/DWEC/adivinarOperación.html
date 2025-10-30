@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(20, 20, 20);
+      }
+
+      select {
+        padding: 15px;
+        outline: none;
+        border: 0px;
+        color: white;
+        background-color: rgb(36, 35, 36);
+        border-radius: 10px;
+      }
+
+      .fieldName {
+        color: white;
+        text-align: center;
+      }
+
+      .textbox {
+        padding: 15px;
+        outline: none;
+        border: 0px;
+        color: white;
+        background-color: rgb(36, 35, 36);
+        border-radius: 10px;
+      }
+
+      .errorText {
+        color: red;
+        transition: 0.5s;
+      }
+
+      .successText {
+        color: green;
+        transition: 0.5s;
+      }
+
+      .errorTexbox {
+        border: 1px solid red;
+      }
+
+      .successTexbox {
+        border: 1px solid green;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 25px;
+        outline: none;
+        border: 0px;
+        color: white;
+        background-color: green;
+        border-radius: 10px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <label class="fieldName">Operador conocido</label>
+      <input class="textbox" id="num1Tbx" type="number" readonly />
+
+      <label class="fieldName">Operacion:</label>
+      <input class="textbox" id="operacion" type="text" readonly />
+
+      <label for="result" class="fieldName">Resultado:</label>
+      <input class="textbox" id="result" readonly />
+
+      <label
+        id="opGrafica"
+        style="
+          margin-top: 30px;
+          font-size: 30px;
+          text-align: center;
+          color: rgb(255, 208, 0);
+          font-weight: 700;
+        "
+      ></label>
+
+      <label class="fieldName">X?</label>
+      <input
+        class="textbox"
+        style="border: 3px solid rgb(0, 195, 255)"
+        id="num2Tbx"
+        type="number"
+      />
+
+      <button onclick="validar()">Validar</button>
+    </div>
+
+    <script>
+      Window.onload = hacerOperacion();
+
+      var num1;
+      var num2;
+
+      var numeroMostrar;
+
+      function hacerOperacion() {
+        //Referenciamos elementos
+        var num1Tbx = document.getElementById("num1Tbx");
+        var num2Tbx = document.getElementById("num2Tbx");
+        var resultado;
+        var numeroMostrar;
+
+        this.num1 = Math.floor(Math.random() * 10);
+        this.num2 = Math.floor(Math.random() * 10);
+
+        var num1Mostrar = num1;
+        var num2Mostrar = num2;
+
+        var operacion = Math.floor(Math.random() * 3).toString();
+        this.numeroMostrar = Math.floor(Math.random() * 2) + 1;
+        var operacionIcono;
+
+        //Ponemos el valor en el texbox, el segundo se debe adivinar
+        num1Tbx.value = num1;
+
+        //Con fines de debug, imprimimos toda la selección
+        console.log("Num 1:" + num1);
+        console.log("Num 2:" + num2);
+        console.log("Operacion:" + operacion);
+
+        //Si no, se mantiene la operacion seleccionada
+        switch (operacion) {
+          case "0":
+            console.log("Suma");
+            operacion = "Suma";
+            operacionIcono = "+";
+            document.getElementById("operacion").value = "Suma";
+            resultado = parseInt(num1) + parseInt(num2);
+            break;
+          case "1":
+            console.log("Resta");
+            operacion = "Resta";
+            operacionIcono = "-";
+            document.getElementById("operacion").value = "Resta";
+            resultado = parseInt(num1) - parseInt(num2);
+            break;
+          case "2":
+            console.log("Multiplicacion");
+            operacion = "Multiplicacion";
+            operacionIcono = "*";
+            document.getElementById("operacion").value = "Multiplicacion";
+            resultado = parseInt(num1) * parseInt(num2);
+            break;
+        }
+
+        switch (true) {
+          case this.numeroMostrar == 1:
+            num1Mostrar = "X";
+            num1Tbx.value = num2;
+            break;
+          case this.numeroMostrar == 2:
+            num2Mostrar = "X";
+            num1Tbx.value = num1;
+            break;
+        }
+
+        console.log("Resultado:" + resultado);
+        document.getElementById("result").value = resultado;
+        document.getElementById("opGrafica").innerHTML =
+          num1Mostrar +
+          " " +
+          operacionIcono +
+          " " +
+          num2Mostrar +
+          " = " +
+          resultado;
+      }
+
+      function validar() {
+        //Leemos la respuesta del usuario
+        var num2Tbx = document.getElementById("num2Tbx");
+        var num2 = num2Tbx.value;
+
+        //Dependiendo del cual de los 2 operadores busquemos en este caso, validamos
+        switch (true) {
+          case this.numeroMostrar == 1:
+            num1Mostrar = "X";
+
+            //En caso de que estemos mostrando el valor 1, significa que buscamos el 2
+            if (this.num1 == num2Tbx.value) {
+              alert("Enhorabuena, has acertado!");
+              hacerOperacion();
+            }
+            break;
+
+          case this.numeroMostrar == 2:
+            num2Mostrar = "X";
+
+            //En caso de que estemos mostrando el valor 2, significa que buscamos el 1
+            if (this.num2 == num2Tbx.value) {
+              alert("Enhorabuena, has acertado!");
+              hacerOperacion();
+            }
+            break;
+        }
+
+        num2Tbx.value = "";
+      }
+    </script>
+  </body>
+</html>

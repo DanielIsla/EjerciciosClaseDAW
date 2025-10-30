@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(20, 20, 20);
+        }
+
+        .fieldName {
+            color: white;
+        }
+
+        .textbox {
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: rgb(36,35,36);
+            border-radius: 10px;
+        }
+
+        .errorText{
+            color: red;
+            transition: 0.5s;
+        }
+
+        .successText{
+            color: green;
+            transition: 0.5s;
+        }
+
+        .errorTexbox{
+            border: 1px solid red;
+        }
+
+        .successTexbox{
+            border: 1px solid green;
+        }
+
+        button{
+            margin-top: 10px;
+            padding: 15px;
+            outline: none;
+            border: 0px;
+            color: white;
+            background-color: green;
+            border-radius: 10px;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="name" class="fieldName">Nombre:</label>
+        <input class="textbox" id="name" name="name" required>
+        <label id="nameValidation"></label>
+        <label for="phone" class="fieldName">Telefono:</label>
+        <input class="textbox" id="phone" name="phone" required>
+        <label id="phoneValidation"></label>
+        <label for="email" class="fieldName">Email:</label>
+        <input class="textbox" id="email" name="email" required>
+        <label id="emailValidation"></label>
+
+        <button onclick="validateForm()">Subscribirme</button>
+    </div>
+
+    <script>
+        var validName = false;
+        var validPhone = false;
+        var validEmail = false;
+
+        function validateForm() {
+            this.validName = validateName();
+            this.validPhone = validatePhone();
+            this.validEmail = validateEmail();
+
+            if (validEmail == true && validName == true && validPhone == true) {
+                console.log("Formulario validado correctamente");
+                alert("Gracias por suscribirse");
+
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("email").value = "";
+
+                validName = false;
+                validPhone = false;
+                validEmail = false;
+
+                document.getElementById("nameValidation").innerHTML = "";
+                document.getElementById("phoneValidation").innerHTML = "";
+                document.getElementById("emailValidation").innerHTML = "";
+
+            }
+
+            else {
+                console.log("Formulario no validado");
+            }
+        }
+
+        function validateName() {
+            var name = document.getElementById("name");
+            var nameValidation = document.getElementById("nameValidation");
+
+            if (isNaN(name.value) && name.value.length > 0) {
+                nameValidation.innerHTML = "OK";
+                nameValidation.classList.add("successText");
+                nameValidation.classList.remove("errorText");
+                name.classList.add("successTexbox");
+                name.classList.remove("errorTexbox");
+                return true;
+            }
+            else {
+                nameValidation.innerHTML = "Introduzca un nombre valido";
+                nameValidation.classList.remove("successText");
+                nameValidation.classList.add("errorText");
+                name.classList.remove("successTexbox");
+                name.classList.add("errorTexbox");
+                return false;
+            }
+        }
+        function validateEmail() {
+            var email = document.getElementById("email");
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var emailValidation = document.getElementById("emailValidation");
+
+            if (emailRegex.test(email.value)) {
+                emailValidation.classList.remove("errorText");
+                emailValidation.classList.add("successText");
+                email.classList.add("successTexbox");
+                email.classList.remove("errorTexbox");
+                emailValidation.innerHTML = "OK";
+                return true;
+            }
+
+            else {
+                emailValidation.classList.remove("successText");
+                emailValidation.classList.add("errorText");
+                email.classList.remove("successTexbox");
+                email.classList.add("errorTexbox");
+                emailValidation.innerHTML = "Introduzca un email valido";
+                return false;
+            }
+        }
+
+        function validatePhone() {
+            var phone = document.getElementById("phone");
+            var phoneRegex = /^\d{9}$/;
+            var phoneValidation = document.getElementById("phoneValidation");
+
+            if (phoneRegex.test(phone.value)) {
+                phoneValidation.classList.remove("errorText");
+                phoneValidation.classList.add("successText");
+                phone.classList.add("successTexbox");
+                phone.classList.remove("errorTexbox");
+                phoneValidation.innerHTML = "OK";
+                return true;
+            }
+
+            else {
+                phoneValidation.classList.remove("successText");
+                phoneValidation.classList.add("errorText");
+                phone.classList.remove("successTexbox");
+                phone.classList.add("errorTexbox");
+                phoneValidation.innerHTML = "Introduzca un telefono valido";
+                return false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

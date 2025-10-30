@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <button onclick="
+        for (let i = 0; i < 5; i++) {
+            ventana = window.open('../ventana.html', 'ventana' + i, 'left=100,top=100,width=500,height=500');
+            ventana.document.write('Ve+ntana ' + i);
+        }
+    ">Abrir ventanas</button>
+</body>
+
+</html>
