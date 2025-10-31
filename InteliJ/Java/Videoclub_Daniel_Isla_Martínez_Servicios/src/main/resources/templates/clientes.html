@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Videoclub Sakila</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #001f3f, #003366);
+            color: #fff;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #00264d;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2 {
+            color: #f0c330;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 10px;
+        }
+        .search-section, .detail-section, .history-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        .search-section form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-section input[type="email"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #003366;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #333;
+        }
+        .search-section button {
+            padding: 10px 15px;
+            background-color: #f0c330;
+            color: #001f3f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+        .search-section button:hover {
+            background-color: #ffdb4d;
+        }
+        .client-details p strong, .client-history p strong {
+            color: #f0c330;
+        }
+        .history-item {
+            border-bottom: 1px dashed #003366;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .info-message, .error-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .info-message {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #a3d9b1;
+        }
+        .error-message {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fragmento Header -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main>
+        <div class="container">
+            <h1>Gestión de Clientes</h1>
+
+            <!-- Búsqueda de Clientes -->
+            <div class="search-section">
+                <h2>Búsqueda de Clientes por Email</h2>
+                <form th:action="@{/clientes}" method="get">
+                    <input type="email" id="email" name="email" placeholder="Introduce el email del cliente" th:value="${param.email}" required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+
+
+            <!-- Detalle del Cliente -->
+            <div class="detail-section" th:if="${cliente != null}">
+                <h2>Detalle del Cliente</h2>
+                <div class="client-details">
+                    <p><strong>ID:</strong> <span th:text="${cliente.id}"></span></p>
+                    <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}"></span></p>
+                    <p><strong>Apellidos:</strong> <span th:text="${cliente.apellidos}"></span></p>
+                    <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+                </div>
+            </div>
+
+            <!-- Mensaje de no encontrado -->
+            <div class="error-message" th:if="${notFound != null}">
+                <p th:text="${notFound}"></p>
+            </div>
+
+            <!-- Historial del Cliente -->
+            <div class="history-section" th:if="${cliente != null}">
+                <h2>Historial del Cliente</h2>
+                <div th:if="${historial != null and !historial.isEmpty()}">
+                    <div class="history-item" th:each="alquiler : ${historial}">
+                        <p><strong>ID Alquiler:</strong> <span th:text="${alquiler.rental_id}"></span></p>
+                        <p><strong>Película:</strong> <span th:text="${alquiler.titulo}"></span></p>
+                        <p><strong>Fecha de Alquiler:</strong> <span th:text="${#temporals.format(alquiler.rental_date, 'dd-MM-yyyy HH:mm')}"></span></p>
+                        <p><strong>Fecha de Devolución:</strong> <span th:text="${alquiler.return_date != null ? #temporals.format(alquiler.return_date, 'dd-MM-yyyy HH:mm') : 'No devuelto'}"></span></p>
+                    </div>
+                </div>
+                <div th:if="${historial == null or historial.isEmpty()}">
+                    <p>Este cliente no tiene historial de alquileres.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fragmento Footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
