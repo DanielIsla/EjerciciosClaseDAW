@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; gap: 15px">
+      <label>Numero 1</label>
+      <input type="number" id="tbxN1" />
+
+      <label>Numero 2</label>
+      <input type="number" id="tbxN2" />
+
+      <label>Numero 3</label>
+      <input type="number" id="tbxN3" />
+
+      <button
+        onclick="checkearNumero()"
+        style="margin-top: 30px; background-color: green"
+      >
+        Comprobar...
+      </button>
+      <label>Mayor</label>
+      <input type="number" id="tbxMayor" />
+    </div>
+
+    <script>
+      function checkearNumero() {
+        var num1 = document.getElementById("tbxN1").value;
+        var num2 = document.getElementById("tbxN2").value;
+        var num3 = document.getElementById("tbxN3").value;
+
+        var tbxMayor = document.getElementById("tbxMayor");
+
+        var listaNumeros;
+
+        listaNumeros.push(num1);
+        listaNumeros.push(num2);
+        listaNumeros.push(num3);
+
+        listaNumeros.sort();
+
+        console.log(listaNumeros);
+        var index = listaNumeros.length - 1;
+        tbxMayor.value = listaNumeros[index];
+      }
+    </script>
+  </body>
+</html>
