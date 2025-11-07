@@ -1,4 +1,4 @@
-package com.videoclub.sakila;
+package com.videoclub.sakila.modelo;
 
 public class Cliente {
     private int id;

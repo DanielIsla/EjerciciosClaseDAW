@@ -14,6 +14,4 @@ public void addViewControllers (ViewControllerRegistry registry) {
 	registry.addViewController("/quienes-somos").setViewName("somos");
 	
 }
-
-
 }

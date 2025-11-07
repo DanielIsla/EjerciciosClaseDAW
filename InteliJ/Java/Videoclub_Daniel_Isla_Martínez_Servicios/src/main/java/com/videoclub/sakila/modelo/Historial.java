@@ -1,4 +1,4 @@
-package com.videoclub.sakila;
+package com.videoclub.sakila.modelo;
 
 import java.time.LocalDateTime;
 
