@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="operando1" type="number" />
+    <input id="operando2" type="number" />
+    <button onclick="hacerOperacion()">Calcular</button>
+    <input id="resultado" readonly />
+
+    <script>
+      function hacerOperacion() {
+        var tbxOp1 = document.getElementById("operando1");
+        var tbxOp2 = document.getElementById("operando2");
+        var resultado = document.getElementById("resultado");
+
+        console.log(parseInt(tbxOp1.value) + parseInt(tbxOp2.value));
+
+        resultado.value(parseInt(tbxOp1.value) + parseInt(tbxOp2.value));
+      }
+    </script>
+  </body>
+</html>

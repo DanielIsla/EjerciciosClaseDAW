@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Granos</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <label>Numero de granos a entregar:</label>
+      <input style="width: 100%" id="resultadoGranos" readonly />
+    </div>
+
+    <script>
+      resultadoGranos = document.getElementById("resultadoGranos");
+      var resultadoGranosAlmacenado;
+      var sumaSiguiente = 1;
+      resultadoGranosAlmacenado = 0;
+
+      //Abriendo la consola del navegador podremos ver el cálculo paso a paso
+      for (let index = 1; index <= 64; index++) {
+        //Mostramos la casilla y los granos en esta misma, como error para que se diferencie
+        console.error(
+          "Casilla: " + index + " | Granos en esta casilla: " + sumaSiguiente
+        );
+
+        //El resultado de todo hasta ahora es la suma de lo que ya llevabamos, mas esta casilla que es el doble de la anterior
+        resultadoGranosAlmacenado = resultadoGranosAlmacenado + sumaSiguiente;
+
+        //Mostramos resultado de todas las casillas anteriores a la actual
+        console.log("Suma esta vuelta: " + resultadoGranosAlmacenado);
+
+        //Preparamos para la siguiente vuelta, donde se duplicarán los granos en esa casilla
+        sumaSiguiente = sumaSiguiente * 2;
+      }
+
+      resultadoGranos.value = resultadoGranosAlmacenado;
+    </script>
+  </body>
+</html>

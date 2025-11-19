@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        background-color: rgb(105, 105, 105);
+        padding: 15px;
+        border-radius: 10px;
+        border-color: transparent;
+        color: white;
+        font-weight: 600;
+      }
+
+      button {
+        background-color: rgb(105, 105, 105);
+        padding: 15px;
+        border-radius: 10px;
+        border-color: transparent;
+        color: white;
+        transition: 0.5s;
+        border: solid 2px green;
+      }
+
+      button:hover {
+        background-color: rgb(80, 80, 80);
+        transition: 0.5s;
+        border: solid 2px greenyellow;
+      }
+
+      body {
+        padding: 15px;
+        background-color: rgb(53, 53, 53);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="op1" type="number" />
+    <input id="op2" type="number" />
+    <input id="op3" type="number" />
+    <button onclick="comprobarSuma()">Comprobar</button>
+
+    <script>
+      function comprobarSuma() {
+        var op1 = document.getElementById("op1");
+        var op2 = document.getElementById("op2");
+        var op3 = document.getElementById("op3");
+
+        //Si alguno de los campos está vacío, se lo comunicamos al usuario
+        if (op1.value == "" || op2.value == "" || op3.value == "") {
+          alert("Rellene todos los campos antes de comprobar");
+        }
+
+        //Si no, continuamos con la comprobación
+        else {
+          switch (true) {
+            case parseInt(op1.value) + parseInt(op2.value) ==
+              parseInt(op3.value):
+              alert(op1.value + " + " + op2.value + " = " + op3.value);
+              break;
+
+            case parseInt(op2.value) + parseInt(op1.value) ==
+              parseInt(op3.value):
+              alert(op2.value + " + " + op1.value + " = " + op3.value);
+              break;
+
+            case parseInt(op2.value) + parseInt(op3.value) ==
+              parseInt(op1.value):
+              alert(op2.value + " + " + op3.value + " = " + op1.value);
+              break;
+
+            case parseInt(op3.value) + parseInt(op2.value) ==
+              parseInt(op1.value):
+              alert(op3.value + " + " + op2.value + " = " + op1.value);
+              break;
+
+            case parseInt(op3.value) + parseInt(op1.value) ==
+              parseInt(op2.value):
+              alert(op3.value + " + " + op1.value + " = " + op2.value);
+              break;
+
+            case parseInt(op1.value) + parseInt(op3.value) ==
+              parseInt(op2.value):
+              alert(op1.value + " + " + op3.value + " = " + op2.value);
+              break;
+
+            default:
+              alert("Ninguno de los campos mas otro es igual al restante");
+              break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
