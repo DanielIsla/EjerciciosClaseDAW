@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulsaciones</title>
+    <style>
+      body {
+        background-color: rgb(20, 20, 20);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0px;
+      }
+      button {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: red;
+        border: none;
+        transition: 0.5s;
+      }
+
+      button:hover {
+        background-color: rgb(255, 38, 38);
+        transition: 0.5;
+      }
+
+      label {
+        margin: 30px;
+        font-size: 22px;
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <label id="indicadorTiempo"></label>
+    <button id="boton" onclick="pulsacion()">Botón pulsado 0 veces</button>
+    <script>
+      let boton = document.getElementById("boton");
+      let indicadorTiempo = document.getElementById("indicadorTiempo");
+      let pulsaciones = 0;
+      let tiempoRondaPrevia = 15;
+      let tiempoRestanteRonda = tiempoRondaPrevia;
+      let timerFuncionando = false;
+
+      function pulsacion() {
+        boton.innerHTML = "Botón pulsado " + pulsaciones + " veces";
+        pulsaciones++;
+
+        indicadorTiempo.innerHTML =
+          "Tiempo restante: " +
+          tiempoRestanteRonda +
+          "/" +
+          tiempoRondaPrevia +
+          "s";
+
+        if (!timerFuncionando) {
+          timerFuncionando = true;
+          let tiempoRestanteRondaTimer = setInterval(function () {
+            indicadorTiempo.innerHTML =
+              "Tiempo restante: " +
+              tiempoRestanteRonda +
+              "/" +
+              tiempoRondaPrevia +
+              "s";
+
+            tiempoRestanteRonda--;
+          }, 1000);
+          timerJuego();
+        }
+      }
+
+      function timerJuego() {
+        setTimeout(() => {
+          timerFuncionando = false;
+
+          if (pulsaciones >= 150) {
+            alert("Has ganado");
+          } else {
+            alert("Has perdido");
+          }
+
+          console.log(tiempoRondaPrevia);
+
+          pulsaciones = 0;
+          boton.innerHTML = "Botón pulsado 0 veces";
+          indicadorTiempo.innerHTML =
+            "Tiempo restante: " +
+            tiempoRestanteRonda +
+            "/" +
+            tiempoRondaPrevia +
+            "s";
+          tiempoRondaPrevia--;
+          tiempoRestanteRonda = tiempoRondaPrevia;
+        }, tiempoRondaPrevia * 1000);
+      }
+    </script>
+  </body>
+</html>

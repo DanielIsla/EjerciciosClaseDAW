@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 1px rgb(65, 65, 65);
+        transition: 0.5s;
+      }
+
+      button:hover {
+        background-color: rgb(65, 65, 65);
+        color: white;
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div
+      style="
+        padding: 40px;
+        border-radius: 15px;
+        border: solid 1px rgb(65, 65, 65);
+      "
+    >
+      <label>¿Vas a aprobar el curso?</label>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          margin-top: 20px;
+        "
+      >
+        <button id="btnSi" onmouseover="moverSi()">Si</button>
+        <button id="btnNo">No</button>
+      </div>
+    </div>
+    <script>
+      var btnSi = document.getElementById("btnSi");
+      var btnNo = document.getElementById("btnNo");
+
+      //Obtenemos el ancho y el alto de la pantalla
+      var ancho = window.innerWidth;
+      var alto = window.innerHeight;
+
+      function moverSi() {
+        console.log("Si");
+        btnSi.style.position = "absolute";
+        btnSi.style.left = Math.random() * ancho + "px";
+        btnSi.style.top = Math.random() * alto + "px";
+      }
+    </script>
+  </body>
+</html>

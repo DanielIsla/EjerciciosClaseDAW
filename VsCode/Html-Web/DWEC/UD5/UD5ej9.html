@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 30px;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .boton {
+        width: 20px;
+      }
+
+      .cartaGrande {
+        width: 150px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="cartaGrande" id="cartaGrande" />
+      <div>
+        <img
+          class="boton"
+          src="../images/izquierda.bmp"
+          onclick="clickIzquierda()"
+        />
+        <img id="opc1" onclick="evento(src)" />
+        <img id="opc2" onclick="evento(src)" />
+        <img id="opc3" onclick="evento(src)" />
+        <img id="opc4" onclick="evento(src)" />
+        <img id="opc5" onclick="evento(src)" />
+        <img
+          class="boton"
+          src="../images/derecha.bmp"
+          onclick="clickDerecha()"
+        />
+      </div>
+    </div>
+
+    <script>
+      let cartaGrande = document.getElementById("cartaGrande");
+      let opc1 = document.getElementById("opc1");
+      let opc2 = document.getElementById("opc2");
+      let opc3 = document.getElementById("opc3");
+      let opc4 = document.getElementById("opc4");
+      let opc5 = document.getElementById("opc5");
+
+      let imagenes = [
+        "../images/1.bmp",
+        "../images/2.bmp",
+        "../images/3.bmp",
+        "../images/4.bmp",
+        "../images/5.bmp",
+      ];
+
+      let todasImagenes = [
+        "../images/1.bmp",
+        "../images/2.bmp",
+        "../images/3.bmp",
+        "../images/4.bmp",
+        "../images/5.bmp",
+        "../images/6.bmp",
+        "../images/7.bmp",
+        "../images/8.bmp",
+        "../images/9.bmp",
+        "../images/10.bmp",
+        "../images/11.bmp",
+        "../images/12.bmp",
+        "../images/13.bmp",
+      ];
+
+      //Inicializamos las imagenes
+      cartaGrande.src = imagenes[0];
+      opc1.src = imagenes[0];
+      opc2.src = imagenes[1];
+      opc3.src = imagenes[2];
+      opc4.src = imagenes[3];
+      opc5.src = imagenes[4];
+
+      let indiceImagen0 = 0;
+      let indiceImagen1 = 1;
+      let indiceImagen2 = 2;
+      let indiceImagen3 = 3;
+      let indiceImagen4 = 4;
+
+      function evento(src) {
+        cartaGrande.src = src;
+      }
+
+      function clickIzquierda() {
+        indiceImagen0--;
+        indiceImagen1--;
+        indiceImagen2--;
+        indiceImagen3--;
+        indiceImagen4--;
+
+        if (indiceImagen0 < 0) {
+          indiceImagen0 = todasImagenes.length - 1;
+        }
+        if (indiceImagen1 < 0) {
+          indiceImagen1 = todasImagenes.length - 1;
+        }
+        if (indiceImagen2 < 0) {
+          indiceImagen2 = todasImagenes.length - 1;
+        }
+        if (indiceImagen3 < 0) {
+          indiceImagen3 = todasImagenes.length - 1;
+        }
+        if (indiceImagen4 < 0) {
+          indiceImagen4 = todasImagenes.length - 1;
+        }
+
+        imagenes[0] = todasImagenes[indiceImagen0];
+        imagenes[1] = todasImagenes[indiceImagen1];
+        imagenes[2] = todasImagenes[indiceImagen2];
+        imagenes[3] = todasImagenes[indiceImagen3];
+        imagenes[4] = todasImagenes[indiceImagen4];
+
+        opc1.src = imagenes[0];
+        opc2.src = imagenes[1];
+        opc3.src = imagenes[2];
+        opc4.src = imagenes[3];
+        opc5.src = imagenes[4];
+      }
+
+      function clickDerecha() {
+        indiceImagen0++;
+        indiceImagen1++;
+        indiceImagen2++;
+        indiceImagen3++;
+        indiceImagen4++;
+
+        if (indiceImagen0 == todasImagenes.length) {
+          indiceImagen0 = 0;
+        }
+        if (indiceImagen1 == todasImagenes.length) {
+          indiceImagen1 = 0;
+        }
+        if (indiceImagen2 == todasImagenes.length) {
+          indiceImagen2 = 0;
+        }
+        if (indiceImagen3 == todasImagenes.length) {
+          indiceImagen3 = 0;
+        }
+        if (indiceImagen4 == todasImagenes.length) {
+          indiceImagen4 = 0;
+        }
+
+        console.error("Separa");
+        console.log(indiceImagen0);
+        console.log(indiceImagen1);
+        console.log(indiceImagen2);
+        console.log(indiceImagen3);
+        console.log(indiceImagen4);
+
+        imagenes[0] = todasImagenes[indiceImagen0];
+        imagenes[1] = todasImagenes[indiceImagen1];
+        imagenes[2] = todasImagenes[indiceImagen2];
+        imagenes[3] = todasImagenes[indiceImagen3];
+        imagenes[4] = todasImagenes[indiceImagen4];
+
+        opc1.src = imagenes[0];
+        opc2.src = imagenes[1];
+        opc3.src = imagenes[2];
+        opc4.src = imagenes[3];
+        opc5.src = imagenes[4];
+      }
+    </script>
+  </body>
+</html>

@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Código tecla pulsada</title>
+    <title>Document</title>
   </head>
   <body>
     <script>
-      document.addEventListener(onkeyup, function () {
+      onkeyup = function () {
         var tecla = window.event.keyCode;
         document.write("Tecla pulsada: " + tecla);
         console.log("Tecla pulsada: " + tecla);
-      });
+      };
     </script>
   </body>
 </html>

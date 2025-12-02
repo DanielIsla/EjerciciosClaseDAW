@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      label {
+        text-decoration: underline;
+        text-decoration-color: aqua;
+        cursor: pointer;
+      }
+
+      .pOculto {
+        display: none;
+      }
+
+      .tOculto {
+        content: "Mostrar contenidos";
+      }
+    </style>
+  </head>
+  <body>
+    <p id="p1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet est
+      at arcu bibendum dignissim. Aliquam bibendum dui ac est dignissim dapibus.
+      Cras a ex faucibus, consectetur turpis aliquet, tincidunt quam. Aliquam
+      quis sem finibus, maximus felis nec, aliquam purus. Sed ornare ex quis
+      turpis bibendum ultrices. Suspendisse quis blandit nunc, id ultrices nibh.
+      Proin pharetra eros eu pulvinar porttitor. Pellentesque habitant morbi
+      tristique senectus et netus et malesuada fames ac turpis egestas.
+    </p>
+    <p id="p2">
+      Pellentesque egestas porttitor condimentum. Maecenas gravida, sem nec
+      facilisis facilisis, erat enim malesuada orci, id fermentum urna nisi in
+      purus. Nulla quam ex, dignissim non rutrum ac, cursus a nisi. Phasellus id
+      bibendum metus, sed laoreet tellus. Fusce non ex ipsum. Proin scelerisque
+      sollicitudin sem, sed placerat justo semper sit amet. Morbi vitae purus a
+      massa pretium placerat et in metus.
+    </p>
+
+    <p id="p3">
+      Duis congue, augue id egestas finibus, lorem justo eleifend risus, quis
+      commodo enim dui vitae nisi. Nunc fermentum libero non sodales laoreet.
+      Donec interdum leo id neque blandit, vitae luctus risus pretium. Fusce sed
+      mattis justo. Nulla neque elit, aliquet vitae elit nec, ultrices posuere
+      massa. Nulla facilisi. Sed condimentum lectus sit amet dui aliquam
+      vestibulum. Vestibulum metus diam, malesuada nec justo vitae, accumsan
+      sollicitudin nunc. Vivamus tincidunt eros libero, nec dictum tortor
+      dignissim ut. Phasellus faucibus et erat a vehicula. Duis eu odio eget est
+      tempor auctor. Nam eleifend lorem sem, non convallis ipsum tincidunt vel.
+      Sed lectus neque, congue maximus felis nec, posuere sagittis mi.
+      Pellentesque suscipit tempor ligula sit amet sagittis. Morbi sed risus
+      ultricies, maximus ligula ac, luctus augue. Phasellus in finibus augue.
+    </p>
+
+    <div style="display: flex; flex-direction: column">
+      <label
+        id="lblP1"
+        onclick="document.getElementById('p1').classList.toggle('pOculto')"
+        >Ocultar contenidos</label
+      >
+      <label
+        id="lblP2"
+        onclick="document.getElementById('p2').classList.toggle('pOculto')"
+        >Ocultar contenidos</label
+      >
+      <label
+        id="lblP3"
+        onclick="document.getElementById('p3').classList.toggle('pOculto'); "
+        >Ocultar contenidos</label
+      >
+    </div>
+  </body>
+</html>
