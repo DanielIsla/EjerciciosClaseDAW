@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Hecho por Daniel Isla Martinez, grupo 2 DAW -->
+
+  <!--Crear un objeto Persona que tenga dos propiedades: Nombre y DineroAhorrado, y dos métodos: Ahorra y Gasta.
+  Crea un Array con varias personas (con distintos nombres y distintas cantidades de dinero ahorrado).
+  Y muestra una pantalla similar a la siguiente, desde la que se pueda seleccionar una persona (bien con el nombre o con su posición en la tabla)
+  y una cantidad que podrá ahorrar o gastar.
+  Lógicamente, habrá que comprobar que no pueda gastar más dinero del que tenga ahorrado.-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: fit-content;
+        td {
+          border: 1px solid black;
+          width: fit-content;
+          align-items: center;
+          justify-content: center;
+          padding: 2px;
+          input {
+            width: 130px;
+          }
+          button {
+            align-self: center;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>ID persona:</td>
+        <td><input id="inputPersona" /></td>
+      </tr>
+      <tr>
+        <td>Cantidad:</td>
+        <td><input id="inputCantidad" /></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button id="btnAhorrar" onclick="btnAhorrarClick()">Ahorrar</button>
+          <button id="btnGastar" onclick="btnGastarClick()">Gastar</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button id="btnListarGrupo" onclick="btnListarGrupoClick()">
+            Listar grupo
+          </button>
+        </td>
+      </tr>
+    </table>
+    <script>
+      //Clase persona
+      class Persona {
+        constructor(nombre, dineroAhorrado) {
+          this.nombre = nombre;
+          this.dineroAhorrado = dineroAhorrado;
+        }
+        ahorrar(cantidad) {
+          this.dineroAhorrado = this.dineroAhorrado + parseInt(cantidad);
+        }
+        gastar(cantidad) {
+          if (cantidad <= this.dineroAhorrado) {
+            this.dineroAhorrado = this.dineroAhorrado - parseInt(cantidad);
+          } else {
+            alert(
+              "No tienes suficiente dinero. Te quedan " + this.dineroAhorrado
+            );
+          }
+        }
+      }
+
+      //Array de objetos persona
+      let personas = [];
+
+      //Inicializacion de el array
+      personas.push(
+        new Persona("Pepe", 100),
+        new Persona("Maria", 200),
+        new Persona("Juan", 300),
+        new Persona("Luis", 400),
+        new Persona("Ana", 500)
+      );
+
+      //Inputs y botones
+      let inputPersona = document.getElementById("inputPersona");
+      let inputCantidad = document.getElementById("inputCantidad");
+      let btnAhorrar = document.getElementById("btnAhorrar");
+      let btnGastar = document.getElementById("btnGastar");
+      let btnListarGrupo = document.getElementById("btnListarGrupo");
+
+      //Funciones
+      function btnAhorrarClick() {
+        try {
+          personas[inputPersona.value].ahorrar(inputCantidad.value);
+        } catch (e) {
+          alert(
+            "Ha ocurrido un error, probablemente el id no existe o no has introducido una cantidad"
+          );
+        }
+      }
+      function btnGastarClick() {
+        try {
+          personas[inputPersona.value].gastar(inputCantidad.value);
+        } catch (e) {
+          alert(
+            "Ha ocurrido un error, probablemente el id no existe o no has introducido una cantidad"
+          );
+        }
+      }
+      function btnListarGrupoClick() {
+        console.log(personas);
+      }
+    </script>
+  </body>
+</html>

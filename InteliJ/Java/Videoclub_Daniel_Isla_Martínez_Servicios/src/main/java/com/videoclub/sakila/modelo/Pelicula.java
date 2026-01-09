@@ -24,11 +24,7 @@ public class Pelicula {
 		this.estreno=estreno;
 		this.idioma=idioma;
 	}
-	
-	
-	
-	
-	
+
     // Getters y setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

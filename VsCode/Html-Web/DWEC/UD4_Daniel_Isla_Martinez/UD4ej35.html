@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(36, 36, 36);
+      }
+
+      .optionsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .alumnoContainer {
+        background-color: rgb(73, 73, 73);
+        border-radius: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input {
+          background-color: gray;
+          border-radius: 20px;
+          border: 2px solid rgb(255, 255, 255);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="optionsContainer">
+      <div class="alumnoContainer">
+        <label> Nombre: </label>
+        <input type="text" id="tbxNombre" />
+      </div>
+
+      <div class="alumnoContainer">
+        <label> Nota 1: </label>
+        <input type="number" id="tbxNota1" />
+      </div>
+
+      <div class="alumnoContainer">
+        <label> Nota 2: </label>
+        <input type="number" id="tbxNota2" />
+      </div>
+
+      <div class="alumnoContainer">
+        <label> Nota 3: </label>
+        <input type="number" id="tbxNota3" />
+      </div>
+
+      <div class="alumnoContainer">
+        <button
+          onclick="aniadirAlumno()"
+          style="margin-top: 30px; background-color: green"
+        >
+          Añadir alumno
+        </button>
+      </div>
+    </div>
+
+    <script>
+      var tbxNombre = document.getElementById("tbxNombre").value;
+      var tbxNota1 = document.getElementById("tbxNota1").value;
+      var tbxNota2 = document.getElementById("tbxNota2").value;
+      var tbxNota3 = document.getElementById("tbxNota3").value;
+
+      //Lista de alumnos
+      let alumnos = [];
+
+      //Clase Alumno
+      class Alumno {
+        nombre = "";
+        nota1 = null;
+        nota2 = null;
+        nota3 = null;
+        notaMedia = null;
+
+        constructor(Nombre, nota1, nota2, nota3) {
+          this.nombre = Nombre;
+          this.nota1 = nota1;
+          this.nota2 = nota2;
+          this.nota3 = nota3;
+          this.notaMedia = this.calcularMedia();
+        }
+
+        calcularMedia() {
+          return (this.nota1 + this.nota2 + this.nota3) / 3;
+        }
+      }
+
+      function aniadirAlumno() {
+        var alumno = new Alumno(tbxNombre, tbxNota1, tbxNota2, tbxNota3);
+        alumnos.push(alumno);
+        console.log(alumnos);
+      }
+    </script>
+  </body>
+</html>

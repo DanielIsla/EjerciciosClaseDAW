@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: center; gap: 10px">
+        <label>Micro</label>
+        <input type="text" id="micro" />
+        <label>Velocidad</label>
+        <input type="text" id="velocidad" />
+        <label>Sistema</label>
+        <input type="text" id="sistema" />
+      </div>
+      <div style="display: flex; justify-content: center; gap: 10px">
+        <button onclick="borrarDatos()">Borrar datos</button>
+        <button onclick="crearPC()">Crear PC</button>
+        <button onclick="mostrarListado()">Mostrar listado</button>
+      </div>
+    </div>
+
+    <ul id="listado"></ul>
+
+    <script>
+      var micro = document.getElementById("micro");
+      var velocidad = document.getElementById("velocidad");
+      var sistema = document.getElementById("sistema");
+
+      class PC {
+        micro;
+        velocidad;
+        sistema;
+
+        constructor(Micro, Velocidad, Sistema) {
+          this.micro = Micro;
+          this.velocidad = Velocidad;
+          this.sistema = Sistema;
+        }
+      }
+
+      var PCs = [];
+
+      function borrarDatos() {
+        //Vaciamos el array de objetos
+        PCs = [];
+      }
+
+      function crearPC() {
+        //Creamos el pc
+        var pc = new PC(micro.value, velocidad.value, sistema.value);
+
+        //Con fines de debug
+        console.log(pc);
+
+        //Metemos el pc en el array
+        PCs.push(pc);
+      }
+
+      function mostrarListado() {
+        var listado = document.getElementById("listado");
+
+        //Inicializamos el listado a vacio
+        listado.innerHTML = "";
+
+        //Para cada PC del array, imprimimos
+        PCs.forEach((PC) => {
+          listado.innerHTML += `<li>Micro: ${PC.micro}</li>`;
+          listado.innerHTML += `<li>Velocidad: ${PC.velocidad}</li>`;
+          listado.innerHTML += `<li>Sistema: ${PC.sistema}</li>`;
+        });
+      }
+    </script>
+  </body>
+</html>

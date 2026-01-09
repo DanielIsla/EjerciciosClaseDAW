@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Hecho por Daniel Isla Martinez, grupo 2 DAW -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Clase coche
+      class Coche {
+        Marca;
+        Modelo;
+        anioFab;
+
+        constructor(marca, modelo, aniofab) {
+          this.marca = marca;
+          this.Modelo = modelo;
+          this.anioFab = aniofab;
+        }
+      }
+
+      //Crear y llenar array
+      let coches = [];
+      coches.push(
+        new Coche("Peugeot", "206", 2000),
+        new Coche("Seat", "Ibiza", 2001),
+        new Coche("Renault", "Clio", 2002),
+        new Coche("Renault", "Megane", 2003),
+        new Coche("Ferrari", "F40", 2004)
+      );
+
+      document.writeln(
+        coches.forEach((coche) => {
+          document.write(
+            "Marca: " +
+              coche.marca +
+              " - Modelo: " +
+              coche.Modelo +
+              " - Año: " +
+              coche.anioFab +
+              "<br />"
+          );
+        })
+      );
+    </script>
+  </body>
+</html>

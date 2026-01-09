@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 50px;
+        display: flex;
+        height: 100vh;
+        margin: 0px;
+      }
+      .areaMovimiento {
+        flex-grow: 1;
+        height: 200px;
+        border: 1px solid black;
+        margin: 0 auto;
+      }
+      .bola {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="areaMovimiento">
+      <div class="bola" id="bola" onclick="clickBola()"></div>
+    </div>
+
+    <script>
+      let bola = document.getElementById("bola");
+      let vidas = 15;
+
+      function clickBola() {
+        moverBola();
+      }
+
+      setInterval(() => {
+        moverBola();
+      }, 300);
+
+      function moverBola() {
+        //Máximos y minimos de movimiento (ancho - margenes)
+        let minX = 100;
+        let maxX = window.innerWidth - 100;
+        let minY = 100;
+        let maxY = 250 - 100;
+
+        console.log(
+          "MinX: " +
+            minX +
+            " MaxX: " +
+            maxX +
+            " MinY: " +
+            minY +
+            " MaxY: " +
+            maxY
+        );
+
+        //Mover bola horizontalmente, en el ancho de la ventana - mitad del ancho de la bola
+        bola.style.left =
+          Math.floor(Math.random() * (maxX - minX + 1)) + minX + "px";
+        console.log(bola.style.left);
+
+        //Mover bola verticalmente, en el alto de la ventana - mitad del alto de la bola
+        bola.style.top =
+          Math.floor(Math.random() * (maxY - minY + 1)) + minY + "px";
+        console.log(bola.style.top);
+      }
+    </script>
+  </body>
+</html>

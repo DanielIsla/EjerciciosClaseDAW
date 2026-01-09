@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .tareasContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgb(112, 158, 255);
+        min-height: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid black;
+
+        .aniadirTareaContainer {
+          display: flex;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tareasContainer">
+      <h1>Lista de tareas pendientes</h1>
+      <div class="aniadirTareaContainer">
+        <label>Añadir nueva tarea</label>
+        <input type="text" id="textoTarea" />
+        <button onclick="crearTarea()">Crear</button>
+      </div>
+
+      <ul id="tareas"></ul>
+    </div>
+    <script>
+      //Variables
+      tareasLista = document.getElementById("tareas");
+      textoTarea = document.getElementById("textoTarea");
+
+      //Clase tarea, con texto y estado de check
+      class Tarea {
+        checked = "checked";
+        texto = "";
+
+        constructor(texto) {
+          this.texto = texto;
+        }
+      }
+
+      //Lista de las tareas
+      tareas = [];
+
+      //Crear nueva tarea
+      function crearTarea() {
+        //Objeto tarea
+        let nuevaTarea = new Tarea(textoTarea.value);
+
+        //Incluimos la nueva tarea en la lista
+        tareas.push(nuevaTarea);
+
+        //Mostramos la nueva tarea
+        console.log(tareas);
+        mostrarTareas();
+      }
+
+      //Mostrar tareas
+      function mostrarTareas() {
+        tareasLista.innerHTML = "";
+
+        tareas.forEach((tarea) => {
+          tareasLista.innerHTML += `<li><input type="checkbox" (checked)="${tarea.checked}" class="${tarea.checked}"/>${tarea.texto}</li>`;
+        });
+      }
+
+      //Cambiar estado de tareas
+      function cambiarEstadoTarea() {}
+    </script>
+  </body>
+</html>
